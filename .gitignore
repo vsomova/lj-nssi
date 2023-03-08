@@ -1,0 +1,12 @@
+tests_and_fixes/
+data/*
+!data/community-based-users.csv
+!data/list-of-cutters.csv
+!data/list-of-friends.csv
+!data/list-of-fofs.csv
+results/
+__pycache__
+.idea
+geckodriver.log
+geckodriver.exe
+chromedriver.exe
