@@ -1,3 +1,5 @@
+import os
+
 import pandas as pd
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import confusion_matrix
@@ -154,8 +156,11 @@ def main():
     df3 = df3.drop(columns=["~~n_posts~~", "~~n_words~~"])  # remove these columns cuz we dont need them for ML
     report += eval_norm_med(df3) # evaluate and apply ML to the data normalized using the median
 
-    with open(f"../results/ML_report_22.txt", "w") as f:
+    nd = "../results/ML_reports"  # new directory
+    if not os.path.exists(nd):
+        os.makedirs(nd)
+    with open(f"../results/ML_reports/report_no-fs.txt", "w") as f:
         f.write(report)
 
-
-main()
+if __name__ == "__main__":
+    main()
