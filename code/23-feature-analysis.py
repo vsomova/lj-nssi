@@ -1,4 +1,3 @@
-import os
 import pandas as pd
 from sklearn.feature_selection import SelectKBest, chi2
 
@@ -9,7 +8,7 @@ def show_best_features(df, N_features):
     y = df["~~group~~"]  # target value
 
     sel = SelectKBest(chi2, k=N_features)  # chi2 for classification
-    f = sel.fit(X, y)
+    f = sel.fit(X, y) # run the score function on our data
     fitscores = pd.DataFrame(f.scores_)  # get the scores
     cols = pd.DataFrame(X.columns)
     result = pd.concat([cols, fitscores], axis=1)  # get names of the columns

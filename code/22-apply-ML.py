@@ -1,5 +1,4 @@
 import pandas as pd
-import sklearn.metrics
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import confusion_matrix
 from sklearn.model_selection import train_test_split
@@ -85,12 +84,8 @@ def eval_bool(df): # evaluate boolean data
     return report
 
 
-def eval_norm_freq(): # evaluate and apply ML to the data normalized by frequency
+def eval_norm_freq(orig_df): # evaluate and apply ML to the data normalized by frequency
     report = "Data normalized by frequency:\n"
-
-    orig_df = pd.read_csv(f"../results/lemmas_normalized/norm_by_freq.csv", keep_default_na=False, index_col=0)
-
-    orig_df = orig_df.drop(columns=["~~n_posts~~", "~~n_words~~"]) # remove these columns cuz we dont need them for ML
 
     # first way: true for cutters and false for everyone else
     report += "\nFirst way: making it true for cutters and false for everyone else:\n"
@@ -106,11 +101,8 @@ def eval_norm_freq(): # evaluate and apply ML to the data normalized by frequenc
     return report
 
 
-def eval_norm_pres(): # evaluate and apply ML to the data normalized by presence
+def eval_norm_pres(orig_df): # evaluate and apply ML to the data normalized by presence
     report = "Data normalized by presence:\n"
-
-    orig_df = pd.read_csv(f"../results/lemmas_normalized/norm_by_pres.csv", keep_default_na=False, index_col=0)
-    orig_df = orig_df.drop(columns=["~~n_posts~~", "~~n_words~~"])  # remove these columns cuz we dont need them for ML
 
     # first way: true for cutters and false for everyone else
     report += "\nFirst way: making it true for cutters and false for everyone else:\n"
@@ -126,11 +118,8 @@ def eval_norm_pres(): # evaluate and apply ML to the data normalized by presence
     return report
 
 
-def eval_norm_med():
+def eval_norm_med(orig_df):
     report = "Data normalized using median:\n"
-
-    orig_df = pd.read_csv(f"../results/lemmas_normalized/norm_by_med.csv", keep_default_na=False, index_col=0)
-    orig_df = orig_df.drop(columns=["~~n_posts~~", "~~n_words~~"])  # remove these columns cuz we dont need them for ML
 
     # first way: true for cutters and false for everyone else
     report += "\nFirst way: making it true for cutters and false for everyone else:\n"
@@ -148,12 +137,23 @@ def eval_norm_med():
 
 def main():
     report = ""
-    report += eval_norm_freq() # evaluate and apply ML to the data normalized by frequency
+
+    df1 = pd.read_csv(f"../results/lemmas_normalized/norm_by_freq.csv", keep_default_na=False, index_col=0)
+    df1 = df1.drop(columns=["~~n_posts~~", "~~n_words~~"]) # remove these columns cuz we dont need them for ML
+    report += eval_norm_freq(df1) # evaluate and apply ML to the data normalized by frequency
+
     report += "\n\n"
-    report += eval_norm_pres() # evaluate and apply ML to the data normalized by presence
+
+    df2 = pd.read_csv(f"../results/lemmas_normalized/norm_by_pres.csv", keep_default_na=False, index_col=0)
+    df2 = df2.drop(columns=["~~n_posts~~", "~~n_words~~"])  # remove these columns cuz we dont need them for ML
+    report += eval_norm_pres(df2) # evaluate and apply ML to the data normalized by presence
+
     report += "\n\n"
-    report += eval_norm_med() # evaluate and apply ML to the data normalized using the median
-    print(report)
+
+    df3 = pd.read_csv(f"../results/lemmas_normalized/norm_by_med.csv", keep_default_na=False, index_col=0)
+    df3 = df3.drop(columns=["~~n_posts~~", "~~n_words~~"])  # remove these columns cuz we dont need them for ML
+    report += eval_norm_med(df3) # evaluate and apply ML to the data normalized using the median
+
     with open(f"../results/ML_report_22.txt", "w") as f:
         f.write(report)
 
