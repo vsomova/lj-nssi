@@ -178,7 +178,7 @@ Input: list_of_cutters.p, list_of_friends.p, list_of_fofs.p, sum_df.csv
 Output: users-vs-lemmas.csv
 
 ### 19-norm-freq
-Normalize the table by frequency: divide all lemmas, and ~\~n_b_strong~\~, ~\~n_i_em~\~, ~\~n_strike~\~, ~\~n_u~\~, ~\~n_font_size~\~, ~\~n_imgs~\~ in metalemmas by “~\~n_words~\~” to count the frequency, since if the person is writing more in general, then they are gonna use more of those lemmas. Normalize ~\~n_has_title~\~ by dividing it by the number of posts, include a new column - “~\~inv_avg_post_len~~” - inverse average post length, which is the total number of posts divided by the total number of words.
+Normalize the table by frequency: divide all lemmas, and ```~~n_b_strong~~```, ```~~n_i_em~~```, ```~~n_strike~~```, ```~~n_u~~```, ```~~n_font_size~~```, ```~~n_imgs~~``` in metalemmas by ```~~n_words~~``` to count the frequency, since if the person is writing more in general, then they are gonna use more of those lemmas. Normalize ```~~n_has_title~~``` by dividing it by the number of posts, include a new column - ```~~inv_avg_post_len~~``` - inverse average post length, which is the total number of posts divided by the total number of words.
 
 Input: users-vs-lemmas.csv
 
