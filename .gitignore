@@ -10,3 +10,4 @@ __pycache__
 geckodriver.log
 geckodriver.exe
 chromedriver.exe
+.DS_Store
