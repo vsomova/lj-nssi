@@ -3,6 +3,7 @@ from sklearn.feature_selection import SelectKBest, chi2
 import importlib
 apply_ML = importlib.import_module("22-apply-ML") # import the file so we can use functions from it
 
+#  INCLUDE UNDERSAMPLING, WRITE A REPORT FOR THAT
 
 def FS(df, N_features):
 
