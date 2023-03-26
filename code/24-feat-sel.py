@@ -50,25 +50,10 @@ def write_report(N_features, resample):
 def main():
     # originally we have 6929 features, now we try to reduce them
 
-    N_features = 3464  # cut number of desired features in half
-    write_report(N_features, None)
+    N_features = [3464, 1000, 100] # cut number of desired features in half, then see lower numbers
+    for N in N_features:
+        write_report(N, None) # no resampling
+        write_report(N, "undersample") # try with undersample
 
-    N_features = 1000  # try lower number of desired features
-    write_report(N_features, None)
-
-    N_features = 100  # try lower number of desired features
-    write_report(N_features, None)
-
-
-#     try with resampling
-
-    N_features = 3464  # cut number of desired features in half
-    write_report(N_features, "undersample")
-
-    N_features = 1000  # try lower number of desired features
-    write_report(N_features, "undersample")
-
-    N_features = 100  # try lower number of desired features
-    write_report(N_features, "undersample")
 
 main()
