@@ -199,11 +199,31 @@ Input: users-vs-lemmas.csv
 Output: lemmas_normalized/norm_by_med.csv
 
 ### 22-apply-ML
-Apply machine learning to explore the data obtained from the last three steps. Each table that we have has 2988 rows and 6932 columns. The objective is to explore this data with predictive models and evaluate the results. 
+Apply machine learning to explore the data obtained from the last three steps. Each table that we have has 2988 rows and 6932 columns. The objective is to explore this data with predictive models and evaluate the results. This step does not use feature selection. Evaluating the confusion tables, one could see class imbalance, therefore we also perform two ways of resampling: undersample and oversample. Write report on each evaluation.
 
 Input: norm_by_freq.csv, norm_by_pres.csv, norm_by_med.csv
 
-Output: ML_report_22.txt
+Output: ML_reports/report_no-fs.txt, ML_reports/report_no-fs_undersampled.txt, ML_reports/report_no-fs_oversampled.txt
 
-Notes: the descriptive analysis was not done prior to this step since the data is too large to evaluate all p-values. 
-Evaluating the results, we can see that the predicting scores vary from 45% to 71%, and we can see this being a result of class imbalance. In many results, we could see the training score being high and the testing score being low, which signifies overfitting. Looking at the confusion tables, one could see class imbalance being critical in some cases. One way to solve this problem is to eliminate some features, but this way we can neglect important features if we are not careful. Therefore, I choose to proceed with feature selection. 
+### 23-feature-analysis
+Apply feature selection to the data and display on the screen the best features for lemmas normalized by frequency, by presence, and by median.
+
+Input: norm_by_freq.csv, norm_by_pres.csv, norm_by_med.csv
+
+Output: N best features are displayed on the screen.
+
+
+### 24-feat-sel
+Apply feature selection to the data (using half the features, then 1000, then 100) and write report on each evaluation with each way of feature selection (including using resampling techniques).
+
+Input: norm_by_freq.csv, norm_by_pres.csv, norm_by_med.csv
+
+Output: ML_reports/report_{N_features}.txt, ML_reports/report_{N_features}_undersampled.txt, ML_reports/report_{N_features}_oversampled.txt
+
+### 25-scores-to-csv
+Go through all the reports in ML_reports directory and make one csv file comparing the testing scores from each report
+
+Input: ML_reports directory
+
+Output: ML_reports/testing_scores.csv
+
