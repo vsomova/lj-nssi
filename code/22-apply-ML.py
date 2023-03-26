@@ -1,3 +1,4 @@
+from imblearn.over_sampling import RandomOverSampler
 from imblearn.under_sampling import RandomUnderSampler
 import os
 import pandas as pd
@@ -69,6 +70,11 @@ def eval_cont(df, resample):  # evaluate continuous data
         unds = RandomUnderSampler(sampling_strategy="majority", random_state=12)
         X_train, y_train = unds.fit_resample(X_train, y_train)
 
+    if resample == "oversample":
+        # perform oversample
+        ovs = RandomOverSampler(sampling_strategy="minority", random_state=12)
+        X_train, y_train = ovs.fit_resample(X_train, y_train)
+
     report = "\nTarget values in general:\n"
     report += (df["~~group~~"].value_counts()).to_string() + "\n"
     report += "\nTarget values in training:\n"
@@ -90,6 +96,11 @@ def eval_bool(df, resample):  # evaluate boolean data
         # perform undersample
         unds = RandomUnderSampler(sampling_strategy="majority", random_state=12)
         X_train, y_train = unds.fit_resample(X_train, y_train)
+
+    if resample == "oversample":
+        # perform oversample
+        ovs = RandomOverSampler(sampling_strategy="minority", random_state=12)
+        X_train, y_train = ovs.fit_resample(X_train, y_train)
 
     report = "\nTarget values in general:\n"
     report += (df["~~group~~"].value_counts()).to_string() + "\n"
@@ -194,6 +205,10 @@ def main():
     with open(f"../results/ML_reports/report_no-fs_undersampled.txt", "w") as f:
         f.write(report)
 
+    # perform a report with oversample
+    report = get_report(resample="oversample")
+    with open(f"../results/ML_reports/report_no-fs_oversampled.txt", "w") as f:
+        f.write(report)
 
 if __name__ == "__main__":
     main()
