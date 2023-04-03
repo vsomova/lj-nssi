@@ -42,7 +42,7 @@ def write_report(N_features, resample):
     if resample == "undersample":
         with open(f"../results/ML_reports/report_{N_features}_undersampled.txt", "w") as f:
             f.write(report)
-    if resample == "oversample":
+    elif resample == "oversample":
         with open(f"../results/ML_reports/report_{N_features}_oversampled.txt", "w") as f:
             f.write(report)
     else:
