@@ -7,6 +7,9 @@ from sklearn.metrics import confusion_matrix
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.naive_bayes import MultinomialNB, BernoulliNB
+from sklearn.metrics import f1_score
+from sklearn.metrics import precision_score
+from sklearn.metrics import recall_score
 
 
 def logit(X_train, X_test, y_train, y_test):
@@ -16,8 +19,16 @@ def logit(X_train, X_test, y_train, y_test):
     logi.fit(X_train, y_train)
     report += "Training: " + str(logi.score(X_train, y_train)) + " " + "Testing: " + str(
         logi.score(X_test, y_test)) + "\n"
-    report += (pd.DataFrame(confusion_matrix(y_test, logi.predict(X_test)), index=["positive", "negative"],
-                            columns=["classified as positive", "classified as negative"])).to_string() + "\n"
+    report += (pd.DataFrame(confusion_matrix(y_test, logi.predict(X_test)), index=["negative", "positive"],
+                            columns=["classified as negative", "classified as positive"])).to_string() + "\n"
+
+    # "When true positive + false positive == 0, precision is undefined; When true positive + false negative == 0,
+    # recall is undefined. In such cases, by default the metric will be set to 0, as will f-score, and
+    # UndefinedMetricWarning will be raised. This behavior can be modified with zero_division", therefore
+    # zero_division set to 0
+    report += "f1 score: " + str(f1_score(y_test, logi.predict(X_test), zero_division=0)) + "\n"
+    report += "Precision score: " + str(precision_score(y_test, logi.predict(X_test), zero_division=0)) + "\n"
+    report += "Recall score: " + str(recall_score(y_test, logi.predict(X_test), zero_division=0)) + "\n"
     return report
 
 
@@ -26,8 +37,11 @@ def RF(X_train, X_test, y_train, y_test):
     rf = RandomForestClassifier()
     rf.fit(X_train, y_train)
     report += "Training: " + str(rf.score(X_train, y_train)) + " " + "Testing: " + str(rf.score(X_test, y_test)) + "\n"
-    report += (pd.DataFrame(confusion_matrix(y_test, rf.predict(X_test)), index=["positive", "negative"],
-                            columns=["classified as positive", "classified as negative"])).to_string() + "\n"
+    report += (pd.DataFrame(confusion_matrix(y_test, rf.predict(X_test)), index=["negative", "positive"],
+                            columns=["classified as negative", "classified as positive"])).to_string() + "\n"
+    report += "f1 score: " + str(f1_score(y_test, rf.predict(X_test), zero_division=0)) + "\n"
+    report += "Precision score: " + str(precision_score(y_test, rf.predict(X_test), zero_division=0)) + "\n"
+    report += "Recall score: " + str(recall_score(y_test, rf.predict(X_test), zero_division=0)) + "\n"
     return report
 
 
@@ -37,8 +51,11 @@ def MNB(X_train, X_test, y_train, y_test):
     mnb.fit(X_train, y_train)
     report += "Training: " + str(mnb.score(X_train, y_train)) + " " + "Testing: " + str(
         mnb.score(X_test, y_test)) + "\n"
-    report += (pd.DataFrame(confusion_matrix(y_test, mnb.predict(X_test)), index=["positive", "negative"],
-                            columns=["classified as positive", "classified as negative"])).to_string() + "\n"
+    report += (pd.DataFrame(confusion_matrix(y_test, mnb.predict(X_test)), index=["negative", "positive"],
+                            columns=["classified as negative", "classified as positive"])).to_string() + "\n"
+    report += "f1 score: " + str(f1_score(y_test, mnb.predict(X_test), zero_division=0)) + "\n"
+    report += "Precision score: " + str(precision_score(y_test, mnb.predict(X_test), zero_division=0)) + "\n"
+    report += "Recall score: " + str(recall_score(y_test, mnb.predict(X_test), zero_division=0)) + "\n"
     return report
 
 
@@ -48,8 +65,11 @@ def BNB(X_train, X_test, y_train, y_test):
     bnb.fit(X_train, y_train)
     report += "Training: " + str(bnb.score(X_train, y_train)) + " " + "Testing: " + str(
         bnb.score(X_test, y_test)) + "\n"
-    report += (pd.DataFrame(confusion_matrix(y_test, bnb.predict(X_test)), index=["positive", "negative"],
-                            columns=["classified as positive", "classified as negative"])).to_string() + "\n"
+    report += (pd.DataFrame(confusion_matrix(y_test, bnb.predict(X_test)), index=["negative", "positive"],
+                            columns=["classified as negative", "classified as positive"])).to_string() + "\n"
+    report += "f1 score: " + str(f1_score(y_test, bnb.predict(X_test), zero_division=0)) + "\n"
+    report += "Precision score: " + str(precision_score(y_test, bnb.predict(X_test), zero_division=0)) + "\n"
+    report += "Recall score: " + str(recall_score(y_test, bnb.predict(X_test), zero_division=0)) + "\n"
     return report
 
 
