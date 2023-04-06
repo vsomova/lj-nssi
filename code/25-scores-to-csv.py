@@ -8,7 +8,7 @@ dir = "../results/ML_reports"
 sum_df = pd.DataFrame()
 
 for filename in os.scandir(dir):
-    if filename.name != "testing_scores.csv": # this program's output file, in case of rerun
+    if ".csv" not in filename.name: # this program's output file, in case of rerun
         f = open(f'{dir}/{filename.name}', 'r')
         report = f.read()
         x = re.findall("Testing: (.+)\n", report)
