@@ -227,3 +227,16 @@ Input: ML_reports directory
 
 Output: ML_reports/testing_scores.csv
 
+### 26-get-all-scores
+Get testing, f1, precision and recall scores for ML and put them into one csv file.
+
+Input: ML_reports directory
+
+Output: ML_reports/all_scores.csv
+
+### 27-get-best-models
+Evaluate ML models based on their scores. Narrow them down to where testing score is more than 0.70 and where precision score is more than 0.72.
+
+Input: ML_reports/all_scores.csv
+
+Output: Show the best models and their scores
