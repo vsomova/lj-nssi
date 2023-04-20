@@ -8,5 +8,4 @@ df = df[ df["Testing score"] > 0.70] # narrow down to where testing score is mor
 
 df = df[ df["Precision score"] > 0.72] # narrow down to where precision score is more than the value
 
-print(df.to_string())
-
+df.to_csv("../results/ML_reports/best_scores.csv")
