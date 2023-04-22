@@ -210,7 +210,7 @@ Apply feature selection to the data and display on the screen the best features 
 
 Input: norm_by_freq.csv, norm_by_pres.csv, norm_by_med.csv
 
-Output: N best features are displayed on the screen.
+Output: best_features.txt
 
 
 ### 24-feat-sel
@@ -239,4 +239,4 @@ Evaluate ML models based on their scores. Narrow them down to where testing scor
 
 Input: ML_reports/all_scores.csv
 
-Output: Show the best models and their scores
+Output: ML_reports/best_scores.csv
